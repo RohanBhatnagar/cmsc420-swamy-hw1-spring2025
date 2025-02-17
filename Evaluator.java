@@ -193,12 +193,18 @@ public class Evaluator {
                             + testCase.expected.length + ", but got " + results.length);
             return false;
         }
+        double epsilon = 1e-6;
         for (int i = 0; i < testCase.expected.length; i++) {
-            if (results[i] != testCase.expected[i]) {
+            if (Math.abs(results[i] - testCase.expected[i]) > epsilon) {
                 System.out.println("Test failed at operation " + i + ": expected " + testCase.expected[i] + " but got "
                         + results[i]);
                 passed = false;
             }
+            // if (results[i] != testCase.expected[i]) {
+            //     System.out.println("Test failed at operation " + i + ": expected " + testCase.expected[i] + " but got "
+            //             + results[i]);
+            //     passed = false;
+            // }
         }
         return passed;
     }
